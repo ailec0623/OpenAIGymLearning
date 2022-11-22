@@ -28,7 +28,7 @@ class Agent:
         self.discount_factor = discount_factor
         self.epsilon = epsilon
         self.batch_size = batch_size
-        self.epsilon_decay = 0.001
+        self.epsilon_decay = 0.0002
         self.epsilon_final = 0.01
         self.update_rate = 120
         self.step_counter = 0
@@ -84,9 +84,14 @@ class Agent:
             done = False
             score = 0.0
             state, _ = env.reset()
+            frame = 0
             while not done:
+                frame += 1
                 action = self.policy(state)
                 new_state, reward, done, _, _ = env.step(action)
+                if frame >= 500:
+                    reward = -200
+                    done = True
                 score += reward
                 self.store_tuple(state, action, reward, new_state, done)
                 state = new_state

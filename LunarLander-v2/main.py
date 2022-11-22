@@ -4,11 +4,11 @@ from agent import Agent
 import gym
 
 
-env = gym.make("LunarLander-v2")
+env = gym.make("LunarLander-v2", render_mode="human")
 spec = gym.spec("LunarLander-v2")
 train = 1
 test = 0
-num_episodes = 100
+num_episodes = 300
 graph = True
 
 file_type = 'tf'
