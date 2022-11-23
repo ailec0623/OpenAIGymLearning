@@ -90,7 +90,7 @@ class Agent:
                 action = self.policy(state)
                 new_state, reward, done, _, _ = env.step(action)
                 if frame >= 500:
-                    reward = -200
+                    reward -= abs(state[1]) * 1000
                     done = True
                 score += reward
                 self.store_tuple(state, action, reward, new_state, done)
